@@ -1,0 +1,206 @@
+/* src/App.css */
+
+/* General Body and HTML Reset */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  overflow: hidden; /* ⭐ CRITICAL CHANGE: Prevents all scrolling on the entire document ⭐ */
+  box-sizing: border-box; /* Ensures padding/border are included in height/width */
+}
+
+/* Customer Details Page Container (No changes needed here for the home page background) */
+.customer-details-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This sets the height of the container to the full viewport height */
+  width: 100%;
+  background: linear-gradient(135deg, #FFDAB9 0%, #ADD8E6 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* App-container is likely a wrapper in App.tsx - keep if used elsewhere */
+.App-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure it takes full viewport height */
+  overflow: hidden; /* Prevent scrolling if App is rendered within this */
+}
+
+/* Specific styling for HomePage.tsx content (which uses .App and its children) */
+.App {
+  position: relative; /* For background-container positioning */
+  display: flex;
+  flex-direction: column; /* Stack header and other potential content vertically */
+  height: 100vh; /* ⭐ CRITICAL CHANGE: Make the App take full viewport height ⭐ */
+  overflow: hidden; /* ⭐ CRITICAL CHANGE: hide any overflow *within* the App component ⭐ */
+  align-items: center; /* Horizontally center App-header */
+}
+
+/* --- THIS IS THE SECTION TO UPDATE --- */
+.background-container {
+  position: fixed; /* Use fixed so it covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw; /* ⭐ CRITICAL CHANGE: Use vw for viewport width ⭐ */
+  height: 100vh; /* ⭐ CRITICAL CHANGE: Use vh for viewport height ⭐ */
+  /* Set the background image, cover the area, and apply blur/brightness */
+  background: url('https://res.cloudinary.com/dfsnnfrnn/image/upload/v1744784004/homepage_image_fg0mgl.jpg') no-repeat center center/cover;
+  filter: blur(8px) brightness(0.7); /* Adjust blur (e.g., 5px, 10px) and brightness (e.g., 0.5 for darker) as desired */
+  z-index: 0; /* Send to background */
+}
+/* --- END OF SECTION TO UPDATE --- */
+
+
+.App-header {
+  background-color: transparent;
+  padding: 20px; /* Adjust initial padding if content is tight */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* ⭐ CRITICAL CHANGE: Removed min-height here: let the content dictate its height naturally ⭐ */
+  max-height: 100vh; /* ⭐ CRITICAL CHANGE: Ensure header content doesn't exceed viewport height ⭐ */
+  overflow-y: auto; /* ⭐ CRITICAL CHANGE: Allow header content to scroll vertically IF it overflows ⭐ */
+  flex-grow: 1; /* Allow header to grow and take available space within .App */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  /* Centering the App-header's content within itself */
+  justify-content: center;
+}
+
+.logo {
+  height: 220px; /* Adjust size as needed */
+  width: auto;
+  margin-bottom: 0px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.App-header h1 {
+  font-size: 3.5rem;
+  color: #FFD700;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.App-header p {
+  font-size: 1.5rem;
+  color: #FFFACD;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.get-started {
+  background-color: #8A2BE2;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.get-started:hover {
+  background-color: #6A1FB4;
+  transform: translateY(-2px);
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  padding: 0 20px; /* ⭐ CRITICAL CHANGE: Adjust padding here to avoid horizontal scroll ⭐ */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  max-width: 100%; /* ⭐ CRITICAL CHANGE: Ensure it doesn't exceed parent width ⭐ */
+}
+
+.story-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  border: 3px solid #ADD8E6;
+}
+
+.story-image:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+  .App-header h1 {
+    font-size: 2.5rem;
+  }
+  .App-header p {
+    font-size: 1.2rem;
+  }
+  .get-started {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+  .image-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Reduce gap for small screens */
+    margin-top: 20px; /* Reduce margin-top */
+  }
+  .story-image {
+    max-width: 90%;
+    width: 280px; /* Give a fixed smaller width if needed */
+  }
+  .logo {
+    height: 180px; /* Smaller logo on tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 10px; /* Further reduce padding for mobile */
+  }
+  .App-header h1 {
+    font-size: 2rem;
+  }
+  .App-header p {
+    font-size: 1rem;
+  }
+  .logo {
+    height: 120px; /* Even smaller logo on mobile */
+    margin-bottom: 5px;
+  }
+  .get-started {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+  .image-row {
+    gap: 15px; /* Further reduce gap */
+    margin-top: 15px;
+  }
+  .story-image {
+    width: 95%; /* Make it fill more width on smallest screens */
+    max-width: 250px; /* Max constraint for images */
+  }
+}

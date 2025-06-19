@@ -1,0 +1,19 @@
+/* index.css - global styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f9f9;
+  color: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
